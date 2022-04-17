@@ -64,6 +64,8 @@ def edit():
             val = request.form[col]
             if val.isnumeric():
                 values.append(val)
+            elif val == 'NULL':
+                values.append(val)
             else:
                 values.append("\'" + val + "\'")
         try:
