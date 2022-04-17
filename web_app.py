@@ -72,6 +72,34 @@ def edit():
             return render_template('invalid.html', e=str(e))
         tables = [nested_list_to_html_table(t) for t in tables]
         return render_template('insert_results.html', tables=tables, table_name=table_name)
+    elif request.method == 'POST' and 'search_form' in request.form:
+        operation = 'search'
+        table = nested_list_to_html_table(select_with_headers(mysql, table_name), buttons=True)
+        return render_template('edit.html', table=table, table_name=table_name, operation=operation)
+    elif request.method == 'POST' and 'search_execute' in request.form:
+        operation = 'search_results'
+        table = nested_list_to_html_table(select_with_headers(mysql, table_name), buttons=True)
+        first_pre = request.form['first_pre']
+        last_pre = request.form['last_pre']
+        search_table, unoptimised, optimised = get_search_results(mysql, table_name, 'first_name', first_pre, 'last_name', last_pre)
+        search_table = nested_list_to_html_table(search_table)
+        return render_template('edit.html', table=table, table_name=table_name, operation=operation, search_table=search_table, unoptimised=unoptimised, optimised=optimised)
+    elif request.method == 'POST' and 'search_date' in request.form:
+        operation = 'search_date'
+        table = nested_list_to_html_table(select_with_headers(mysql, table_name), buttons=True)
+        return render_template('edit.html', table=table, table_name=table_name, operation=operation)
+    elif request.method == 'POST' and 'search_date_execute' in request.form:
+        operation = 'search_date_results'
+        table = nested_list_to_html_table(select_with_headers(mysql, table_name), buttons=True)
+        date = request.form['date']
+        search_table, time = get_search_date_results(mysql, table_name, 'date_of_discharge', date)
+        search_table = nested_list_to_html_table(search_table)
+        return render_template('edit.html', table=table, table_name=table_name, operation=operation, search_table=search_table, time=time)
+    elif request.method == 'POST' and 'count_employee' in request.form:
+        operation = 'show_count'
+        table = nested_list_to_html_table(select_with_headers(mysql, table_name), buttons=True)
+        count_results = get_count_results(mysql, table_name, 'last_name')
+        return render_template('edit.html', table=table, table_name=table_name, operation=operation, count_results=count_results)
     elif request.method == 'POST' and 'delete_button' in request.form:
         values = request.form['delete_button'].split(',')
         values = [val if val.isnumeric() else "\'" + val + "\'" for val in values]

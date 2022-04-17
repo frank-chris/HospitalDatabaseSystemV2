@@ -185,3 +185,48 @@ def update_table(mysql, tablename, set_statement,  where_condition):
     cursor.fetchall()
     res2 = select_with_headers(mysql, tablename) # after the operation
     return res1, res2
+
+def get_count_results(mysql, tablename, colname):
+    '''
+    Returns count of the column from tablename including and excluding NULL
+    '''
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT COUNT(*) FROM " + tablename)
+    with_null = cursor.fetchall()[0]["COUNT(*)"]
+    cursor.execute("SELECT COUNT('" + colname + "') FROM " + tablename)
+    no_null = cursor.fetchall()[0]["COUNT('" + colname + "')"]
+    return ("Including NULL: " + str(with_null) , "Excluding NULL: " + str(no_null))
+
+def get_search_results(mysql, tablename, first_col, first_pre, last_col, last_pre):
+    '''
+    '''
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SET PROFILING=1")
+    cursor.execute("SELECT * FROM " + tablename + " WHERE MATCH(" + first_col + ") AGAINST ('" + first_pre + "*' IN BOOLEAN MODE) OR MATCH(" + last_col + ") AGAINST ('" + last_pre + "*' IN BOOLEAN MODE)")
+    rows = cursor.fetchall()
+    search_table = convert(rows, "select")
+    cursor.execute("SELECT * FROM " + tablename + " WHERE MATCH(" + first_col + ") AGAINST ('" + first_pre + "*' IN BOOLEAN MODE) UNION SELECT * FROM " + tablename + " WHERE MATCH(" + last_col + ") AGAINST ('" + last_pre + "*' IN BOOLEAN MODE)")
+    rows = cursor.fetchall()
+    cursor.execute("SHOW PROFILES")
+    optimised = cursor.fetchall()
+    print(optimised)
+    optimised = 'qwe'
+    unoptimised = optimised
+    cursor.execute("SET PROFILING=0")
+
+    return search_table, unoptimised, optimised
+
+def get_search_date_results(mysql, tablename, col, val):
+    '''
+    '''
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SET PROFILING=1")
+    cursor.execute("SELECT * FROM " + tablename + " WHERE " + col + " = '" + val + "'")
+    rows = cursor.fetchall()
+    search_table = convert(rows, "select")
+    cursor.execute("SHOW PROFILES")
+    time = cursor.fetchall()
+    print(time)
+    time = 'qwe'
+    cursor.execute("SET PROFILING=0")
+    return search_table, time

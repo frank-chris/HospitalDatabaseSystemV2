@@ -73,7 +73,47 @@
             </svg>
             Insert
           </button>
+
+          {% if table_name=='patient' %}
+          <button name="search_form" class="btn btn-primary mr-2 gap-2" >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+            Search (Task 1 - first_name/last_name)
+          </button>
+
+          <button name="search_date" class="btn btn-primary mr-2 gap-2" >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+            Search (Task 4 - date_of_discharge)
+          </button>
+          {% endif %}
           
+          {% if table_name=='employee' %}
+          <button name="count_employee" class="btn btn-primary mr-2 gap-2" >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4 1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm1-4a1 1 0 100 2h.01a1 1 0 100-2H7zm2 1a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm4-4a1 1 0 100 2h.01a1 1 0 100-2H13zM9 9a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM7 8a1 1 0 000 2h.01a1 1 0 000-2H7z" clip-rule="evenodd" />
+            </svg>
+            Count (last_name)
+          </button>
+
+            {% if operation=='show_count' %}
+            <a class="btn btn-disabled bg-base-200 btn-link">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                <path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+              {{ count_results[0] }}
+              &nbsp; &nbsp; &nbsp; &nbsp;
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                <path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+              {{ count_results[1] }}
+            </a>
+            {% endif %}
+          {% endif %}
           
         </form>
         </div>
@@ -117,6 +157,74 @@
           <button name="update_execute" class="btn btn-primary mr-2" >Update</button>
         </div>
       </form>
+      {% endif %}
+
+      {% if operation=='search' %}
+      <form class='card-body flex flex-col gap-4 bg-base-200 rounded-lg mx-4 shadow-xl' enctype='multipart/form-data' method='post'>
+        <h1 class="font-bold text-xl p-2">Search for tuples with</h1>
+        <div class='flex flex-row overflow-x-auto gap-2 items-end'>
+          <div class='form-control'>
+            <label class='label'>
+              <span class='label-text'>first_name starting with</span>
+            </label>
+            <input type='text' name='first_pre' placeholder='first_name prefix' class='input input-bordered' required>
+          </div>
+          OR
+          <div class='form-control'>
+            <label class='label'>
+              <span class='label-text'>last_name starting with</span>
+            </label>
+            <input type='text' name='last_pre' placeholder='last_name prefix' class='input input-bordered' required>
+          </div>
+        </div>
+
+        <div class='flex flex-row'>
+          <button name="search_execute" class="btn btn-primary mr-2" >Search</button>
+        </div>
+      </form>
+      {% endif %}
+
+      {% if operation=='search_results' %}
+      <div class="flex-col w-full">
+        <h1 class="font-bold text-xl p-2">Search (Task-1) Results</h1>
+        <div class="card overflow-x-auto w-full overflow-y-auto max-h-96 shadow-xl">
+          <table class="table w-full">
+            {{ search_table|safe  }}
+          </table>
+        </div>
+        <h1 class="font-bold text-xl p-2">Unoptimised Search Time: {{ unoptimised }}</h1>
+        <h1 class="font-bold text-xl p-2">Optimised Search Time: {{ optimised }}</h1>
+      </div>
+      {% endif %}
+
+      {% if operation=='search_date' %}
+      <form class='card-body flex flex-col gap-4 bg-base-200 rounded-lg mx-4 shadow-xl' enctype='multipart/form-data' method='post'>
+        <h1 class="font-bold text-xl p-2">Search for tuples with</h1>
+        <div class='flex flex-row overflow-x-auto gap-2 items-end'>
+          <div class='form-control'>
+            <label class='label'>
+              <span class='label-text'>date_of_discharge equal to</span>
+            </label>
+            <input type='text' name='date' placeholder='YYYY-MM-DD' class='input input-bordered' required>
+          </div>
+        </div>
+
+        <div class='flex flex-row'>
+          <button name="search_date_execute" class="btn btn-primary mr-2" >Search</button>
+        </div>
+      </form>
+      {% endif %}
+
+      {% if operation=='search_date_results' %}
+      <div class="flex-col w-full">
+        <h1 class="font-bold text-xl p-2">Search (Task-4) Results</h1>
+        <div class="card overflow-x-auto w-full overflow-y-auto max-h-96 shadow-xl">
+          <table class="table w-full">
+            {{ search_table|safe  }}
+          </table>
+        </div>
+        <h1 class="font-bold text-xl p-2">Optimised Search Time: {{ time }}</h1>
+      </div>
       {% endif %}
   </div>
 
