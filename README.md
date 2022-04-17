@@ -37,6 +37,8 @@ reduced the number of scans from 10% of the complete table to just 191 output ro
 ## Task 5
 
 ## Task 6
+![query caching not supported](images/q6/no_cache.jpg)  
+
 
 ## Task 7
 
