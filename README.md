@@ -23,11 +23,9 @@ CS 432: Databases assignment, IIT Gandhinagar.
 For this task, we used date of discharge in the patient columnn to search for a particular date.
 To optimize the query, we added an index on the column, which reduced the execution time to 10% and 
 reduced the number of scans from 10% of the complete table to just 191 output rows. 
-![before using index](.\images\q4\before_idx.jpg)
-![after using index](.\images\q4\after_idx.jpg)
-![execution time comparsion](.\images\q4\exec_time.jpeg)
-![]()
-
+![before using index](images/q4/before_idx.jpg)
+![after using index](images/q4/after_idx.jpg)
+![execution time comparsion](images/q4/exec_time.jpeg)
 
 
 ## Task 5
