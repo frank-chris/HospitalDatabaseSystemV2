@@ -13,11 +13,36 @@ CS 432: Databases assignment, IIT Gandhinagar.
 
 # Explanations 📰
 
+Click on any image to open it in a new tab. 
+
 ## Task 1
+
+For this task, we optimised the search by using UNION clause after creating indices for both the columns _first_name_ and _last_name_, and the UNION uses both the indices. In the unoptimised case, we just use OR clause which will not use any indices.
+
+Screenshots:
+![or_vs_union](images/q1/search.png)
+![or_vs_union](images/q1/explain.png)
+
+| Query Type  | Duration   | No. of rows scanned |
+|-------------|------------|---------------------|
+| Unoptimised | 0.12565350 | 31331               |
+| Optimised   | 0.00627500 | 1                   |
 
 ## Task 2
 
+![opt_vs_unopt](images/q2/search.png)
+![opt_vs_unopt](images/q2/explain.png)
+
+| Query Type  | Duration   | No. of rows scanned |
+|-------------|------------|---------------------|
+| Unoptimised | 0.12565350 | 31331               |
+| Optimised   | 0.00627500 | 1                   |
+
 ## Task 3
+
+![unoptimised_table](images/q3/unopt.png)
+
+![optimised_table](images/q3/opt_2_changes.png)
 
 ## Task 4
 For this task, we used date of discharge in the patient columnn to search for a particular date.
@@ -47,8 +72,13 @@ SHOW VARIABLES LIKE 'have_query_cache';
 
 ## Task 7
 
+![join](images/q7/join.png)
+
 ## Task 8
 
+![nested_1](images/q8/Selection_038.png)
+![nested_2](images/q8/Selection_039.png)
+![nested_3](images/q8/Selection_040.png)
 
 # Files 📁
 
