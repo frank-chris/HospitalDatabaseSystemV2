@@ -98,27 +98,29 @@ For this task, we used NATURAL JOIN on the tables _doc_office_ and _doc_dept_ an
 | Query Type  | Execution Time   | No. of rows scanned |
 |-------------|------------|---------------------|
 | Unoptimised (without JOIN) | 0.23209400 | 134684               |
-| Optimised (NATURAL JOIN)  | 0.16773950 | 26607                 |
+| Optimised (NATURAL JOIN)  | 0.16773950 | 22607                 |
 
 ## Task 8
 
-**Nested query - 2:**
+**Nested query - 1:**
 ![nested_3](images/q8/Selection_040.png)
 ![nested_3](images/q8/Explain_040.png)
 
 | Query Type  | Execution Time   | No. of rows scanned |
 |-------------|------------|---------------------|
-| Unoptimised | 0.23209400 | 134684               |
-| Optimised   | 0.16773950 | 26607                 |
+| Unoptimised | 0.23209400 | 145985               |
+| Optimised   | 0.16773950 | 32266                 |
 
-**Nested query - 1:**
+**Nested query - 2:**
 ![nested_2](images/q8/Selection_039.png)
 ![nested_2](images/q8/Explain_039.png)
 
 | Query Type  | Execution Time   | No. of rows scanned |
 |-------------|------------|---------------------|
-| Unoptimised | 0.23209400 | 134684               |
-| Optimised   | 0.16773950 | 26607                 |
+| Unoptimised | 0.23209400 | 501 + x               |
+| Optimised   | 0.16773950 | 501                 |
+
+For this case, MySQL could not estimate the number of rows it needs to scan and reported it as NULL, we are assuming it to be a positive number x.
 
 **Nested query - 3:**
 ![nested_1](images/q8/Selection_038.png)
@@ -127,7 +129,7 @@ For this task, we used NATURAL JOIN on the tables _doc_office_ and _doc_dept_ an
 | Query Type  | Execution Time   | No. of rows scanned |
 |-------------|------------|---------------------|
 | Unoptimised | 0.23209400 | 134684               |
-| Optimised   | 0.16773950 | 26607                 |
+| Optimised   | 0.16773950 | 22607                 |
 
 # Files 📁
 
@@ -181,38 +183,6 @@ python3 web_app.py
 
 # Examples for each command ⭐
 
-## Home Page
-![](images/homepage.png)
-
-## Pick Table
-![](images/list_of_tables.png)
-
-## Describe Table
-![](images/describe_table.png)
-
-## View Table
-![](images/view_table.png)
-
-## Insert Entry
-![](images/insert_table.png)
-
-## Insert Successful
-![](images/insert_successful.png)
-
-## Pick entry for updation
-![](images/update_table.png)
-
-## Update Entry
-![](images/update_entry.png)
-
-## Update Successful
-![](images/update_successful.png)
-
-## Delete Entry
-![](images/delete.png)
-
-## Delete Successful
-![](images/delete_successful.png)
 
 # Contributors ✏️
 
