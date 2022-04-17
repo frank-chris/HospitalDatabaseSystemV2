@@ -118,7 +118,7 @@ def select_with_headers(mysql, tablename):
     res: List of lists, first is list of column names, followed by list of rows in the table
     '''
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM " + tablename)
+    cursor.execute("SELECT * FROM " + tablename + " LIMIT 1000")
     rows = cursor.fetchall()
     rows = convert(rows, "select")
     res = rows # error prone
@@ -193,8 +193,8 @@ def get_count_results(mysql, tablename, colname):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT COUNT(*) FROM " + tablename)
     with_null = cursor.fetchall()[0]["COUNT(*)"]
-    cursor.execute("SELECT COUNT('" + colname + "') FROM " + tablename)
-    no_null = cursor.fetchall()[0]["COUNT('" + colname + "')"]
+    cursor.execute("SELECT COUNT(" + colname + ") FROM " + tablename)
+    no_null = cursor.fetchall()[0]["COUNT(" + colname + ")"]
     return ("Including NULL: " + str(with_null) , "Excluding NULL: " + str(no_null))
 
 def get_search_results(mysql, tablename, first_col, first_pre, last_col, last_pre):
@@ -208,10 +208,9 @@ def get_search_results(mysql, tablename, first_col, first_pre, last_col, last_pr
     cursor.execute("SELECT * FROM " + tablename + " WHERE MATCH(" + first_col + ") AGAINST ('" + first_pre + "*' IN BOOLEAN MODE) UNION SELECT * FROM " + tablename + " WHERE MATCH(" + last_col + ") AGAINST ('" + last_pre + "*' IN BOOLEAN MODE)")
     rows = cursor.fetchall()
     cursor.execute("SHOW PROFILES")
-    optimised = cursor.fetchall()
-    print(optimised)
-    optimised = 'qwe'
-    unoptimised = optimised
+    profiles = cursor.fetchall()
+    unoptimised = str(profiles[0]['Duration']) + ' s'
+    optimised = str(profiles[1]['Duration']) + ' s'
     cursor.execute("SET PROFILING=0")
 
     return search_table, unoptimised, optimised
@@ -225,8 +224,7 @@ def get_search_date_results(mysql, tablename, col, val):
     rows = cursor.fetchall()
     search_table = convert(rows, "select")
     cursor.execute("SHOW PROFILES")
-    time = cursor.fetchall()
-    print(time)
-    time = 'qwe'
+    profiles = cursor.fetchall()
+    time = str(profiles[0]['Duration']) + ' s'
     cursor.execute("SET PROFILING=0")
     return search_table, time
