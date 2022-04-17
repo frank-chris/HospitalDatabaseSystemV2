@@ -2,11 +2,39 @@
 A Flask web application for a hospital database system. 
 CS 432: Databases assignment, IIT Gandhinagar.
 
+# Table of Contents
+
+**[Explanations](#explanations-)**<br>
+**[Files](#files-)**<br>
+**[Requirements](#requirements-)**<br>
+**[Instructions to run the web app](#instructions-to-run-the-web-app-)**<br>
+**[Examples for each command](#examples-for-each-command-)**<br>
+**[Contributors](#contributors-)**<br>   
+
+# Explanations 📰
+
+## Task 1
+
+## Task 2
+
+## Task 3
+
+## Task 4
+
+## Task 5
+
+## Task 6
+
+## Task 7
+
+## Task 8
+
+
 # Files 📁
 
-* [`contributions.txt`](https://github.com/frank-chris/HospitalDatabaseSystem/blob/main/contributions.txt)    
-* [`hospitalDB.sql`](https://github.com/frank-chris/HospitalDatabaseSystem/blob/main/hospitalDB.sql)   
-* [`README.pdf`](https://github.com/frank-chris/HospitalDatabaseSystem/blob/main/README.pdf)   
+* [`contributions.txt`](https://github.com/frank-chris/HospitalDatabaseSystemV2/blob/main/contributions.txt)    
+* [`hospitalDB.sql`](https://github.com/frank-chris/HospitalDatabaseSystemV2/blob/main/hospitalDB.sql)   
+* [`README.pdf`](https://github.com/frank-chris/HospitalDatabaseSystemV2/blob/main/README.pdf)   
   
 # Requirements ⚡
 1) MySQL
