@@ -195,6 +195,27 @@ python3 web_app.py
 
 # Examples for each command ⭐
 
+## Search Menu
+
+![nested_1](images/examples/search_menu.png)
+
+## Search (Task-1)
+
+![nested_1](images/examples/search_task_1.png)
+
+**results:**
+![nested_1](images/examples/search_task_1_results.png)
+
+## Search (Task-4)
+
+![nested_1](images/examples/search_task_4.png)
+
+**results:**
+![nested_1](images/examples/search_task_4_results.png)
+
+## Count (Task-5)
+
+![nested_1](images/q5/01.png)
 
 # Contributors ✏️
 
