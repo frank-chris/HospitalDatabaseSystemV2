@@ -9,7 +9,7 @@ CS 432: Databases assignment, IIT Gandhinagar.
 **[Requirements](#requirements-)**<br>
 **[Instructions to run the web app](#instructions-to-run-the-web-app-)**<br>
 **[Examples for each command](#examples-for-each-command-)**<br>
-**[Contributors](#contributors-)**<br>   
+**[Contributors](#contributors-%EF%B8%8F)**<br>   
 
 # Explanations 📰
 
