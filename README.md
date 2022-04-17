@@ -74,7 +74,19 @@ reduced the number of scans from 10% of the complete table to just 191 output ro
 
 ## Task 5
 
+We added 2 NULL values to the column _last_name_ in the table _employee_ and used the following commands to show the differences in counts:
 
+**Including NULL:**
+```
+SELECT COUNT(*) FROM employee;
+```
+
+**Excluding NULL (returns 0 for NULL and counts remaining):**
+```
+SELECT COUNT(last_name) FROM employee;
+```
+
+![count](images/q5/01.png)  
 
 ## Task 6
 Using the following command, we can get the whether MySQL version supports query caching or not.   
